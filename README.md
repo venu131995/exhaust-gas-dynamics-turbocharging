@@ -68,6 +68,9 @@ pressure is found by a secant iteration until eta_mech x turbine work = compress
 | Whole engine, every cycle | mass and energy (fuel heat = piston work + wall heat + enthalpy out - in + storage) closed to 2e-14 |
 | Engine mesh convergence (dx = 40 / 20 / 10 mm) | turbine energy 24,550 / 24,547 / 24,545 J; IMEP unchanged to 1e-5 |
 | Turbocharger matching | turbine and compressor work balanced to 0.3 % at all 16 points |
+| Independent: closed combustion cycle re-solved with scipy `solve_ivp` (own slider-crank, own Wiebe) | peak pressure 125.1867 vs 125.1866 bar; cycle work 16,761.08 J in both |
+| Independent: closed p dV integral of a recorded pressure trace vs the energy ledger | 15,422.2 J in both |
+| Independent: compressor work of all 16 matched points by hand; peak valve area by hand | within 1.2e-5 (CSV rounding); 4,447.6 mm^2 in both |
 
 The one-gas, single-zone model has no species or momentum balance inside cylinders and volumes (they are lumped);
 mass, momentum and energy are balanced in the pipes, and mass and energy in every volume and at every link. 8 automated
@@ -137,6 +140,7 @@ trade-off; a 0-D model cannot see it at all.
 | `src/gx/engine.py` | engine geometry, valves, Wiebe combustion, Woschni heat transfer |
 | `src/gx/sim.py` | exhaust layouts, cycle runner, turbocharger matching |
 | `scripts/run_verification.py` | all verification cases |
+| `scripts/independent_checks.py` | re-implementations used to cross-check the solver (scipy ODE, trace integral, hand calculations) |
 | `scripts/run_analysis.py` | operating line, 0-D vs 1-D, collector-length sweep (parallel, about 30 min on 8 cores) |
 
 ## Run
@@ -145,5 +149,6 @@ trade-off; a 0-D model cannot see it at all.
 pip install -r requirements.txt
 python scripts/run_verification.py
 python scripts/run_analysis.py
+python scripts/independent_checks.py
 python -m pytest -q tests
 ```
