@@ -112,7 +112,7 @@ error stays within -5.3 % to +2.0 %.
 | Collector length | 0.4 m | 0.8 m | 1.2 m | 2.0 m | 3.0 m |
 |---|---|---|---|---|---|
 | Turbine energy per cycle | 33.08 kJ | 32.65 kJ | 32.39 kJ | 31.45 kJ | 32.12 kJ |
-| Indicated efficiency | 50.8 % | 50.9 % | 51.1 % | 51.3 % | 51.3 % |
+| Indicated efficiency | 50.8 % | 50.9 % | 51.1 % | 51.3 % | 51.2 % |
 
 Longer collectors lose turbine energy to wall heat transfer and damping (-5 % from 0.4 to 2.0 m) but relieve the
 exhaust stroke; the partial recovery at 3.0 m comes from the timing of the reflected wave. The model resolves this
